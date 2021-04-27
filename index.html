@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+    <head>
+        <title>Protótipo 2 | c3 + pureJS</title>
+        <script src="./c3-0.7.20/docs/js/d3-5.8.2.min.js"></script>
+        <script src="./c3-0.7.20/c3.min.js"></script>
+        <link href="./c3-0.7.20/c3.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="root">
+            <input type="file" id="index-txt" accept=".txt" style="width: fit-content;">
+            <br/>
+            <div id="chart"></div>
+            <script>
+                var chart = c3.generate({
+                  data: {
+                            columns: [
+                                ['data1', 30, 200, 100, 400, 150, 250],
+                                ['data2', 50, 20, 10, 40, 15, 25]
+                            ]
+                        }
+                    });
+
+                    setTimeout(function () {
+                        chart.load({
+                            columns: [
+                                ['data1', 230, 190, 300, 500, 300, 400]
+                            ]
+                        });
+                    }, 1000);
+
+                    setTimeout(function () {
+                        chart.load({
+                            columns: [
+                                ['data3', 130, 150, 200, 300, 200, 100]
+                            ]
+                        });
+                    }, 1500);
+
+                    setTimeout(function () {
+                        chart.unload({
+                            ids: 'data1'
+                        });
+                    }, 2000);
+            
+            </script>
+            
+        </div>
+    </body>
+</html>
