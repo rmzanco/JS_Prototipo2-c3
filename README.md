@@ -22,11 +22,11 @@ Este repositório contém um sample basico de c3, voltado para o experimento de 
 
 ### Tasks 
 
-[x] Implementar Input;
-[x] Importar a biblioteca c3;
-[x] Plotar gráfico Sample;
-[ ] Implementar conversão de txt em JSON;
-[ ] Injetar dados em JSON no chart;
+- [x] Implementar Input;
+- [x] Importar a biblioteca c3;
+- [x] Plotar gráfico Sample;
+- [ ] Implementar conversão de txt em JSON;
+- [ ] Injetar dados em JSON no chart;
 
 ### Links Para injeção de dependências
 
