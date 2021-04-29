@@ -16,13 +16,14 @@ Este repositório contém um sample basico de c3, voltado para o experimento de 
 
 * Front-end: padrão Web (HTML/CSS/JS)
 * Back-end: N/A (Apenas manipulação de dados .txt em Javascript) 
-* Pure JS (Javascript puro - ECMAScript 6);
+* Pure JS (Javascript puro - ECMAScript 5);
 * c3.js - Biblioteca simplificada originada do d3.js.
     * Vantagens:
         * Manipulação de dados em alto nível em relação ao d3, baixa necessidade de codificação dos gráficos e mais foco nos dados;
-        * Biblioteca de fácil utilização (basta apenas baixar o pacote, ou importar via unpkg, e injetar a dependencia no HTMl)
+        * Biblioteca de fácil utilização (basta apenas baixar o pacote, ou importar via unpkg, e injetar a dependencia no HTML)
     * Desvantagens:
         * Devido ao alto nível de manipulação de dados, a c3 fica restrita apenas a manipulação dos dados. com o d3 por exemplo, alem de ter os plots desejados ainda podemos alterar as condições do gráfico, podendo fazer checagens para a pipeline desejada dos SNPs (Debug do SNP).
+        * Em relação à d3, a comunidade do c3 é muito menor, ou seja, caso haja alguma dúvida durante o projeto em relação a biblioteca, o suporte e os FAQs são menos frequentes e assim para solucionar uma dúvida pode haver uma longa procura, ou até uma falta deste suporte, nos piores casos.
 
 ### Tasks 
 
