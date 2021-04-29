@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+    <head>
+        <title>Protótipo 2 | c3 + pureJS</title>
+        <script src="./third-party/c3-0.7.20/docs/js/d3-5.8.2.min.js"></script>
+        <script src="./third-party/c3-0.7.20/c3.min.js"></script>        
+        <link  href="./third-party/c3-0.7.20/c3.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="root">
+            <button onclick="GerarChart()">Gerar Chart</button>  
+            <br/><br/>
+            <div id="chart"></div>            
+            <script src="./index.js" type="text/javascript"></script>
+            <br><hr><br>      
+            <input type='file' accept='text/plain' onchange='OpenFile(event)'><br>
+            <div id='output'></div>
+            <div id='custom-chart' style="width:auto;"></div>
+        </div>
+    </body>
+</html>
