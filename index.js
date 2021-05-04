@@ -1,23 +1,3 @@
-// function CustomChart(file){
-//     let rawFile = new XMLHttpRequest();
-//     rawFile.open("GET",file, false);
-//     rawFile.onreadystatechange = function()
-//     {
-//         if(rawFile.readyState === 4){
-//             let alltext = rawFile.responseText;
-//             alert(alltext);
-//         }
-
-//     }
-//     rawFile.send(null);
-// }
-
-// function fetching(file){
-//     var text = fetch(file)
-//                     .then(response => response.text)
-//                     .then(text => console.log(text));   
-// }
-
 function GerarChart(){
     var chart = c3.generate({
         bindto: '#chart',
@@ -52,63 +32,68 @@ function GerarChart(){
     }, 2000);
 }
 
-function OpenFile(event){
+function GerarGraficoAPartirDeTxt(event){
 
     var input = event.target;
     var reader = new FileReader();
 
     reader.onload = function(){   
-
         var text = reader.result;
-        var node = document.getElementById('output');
-        //node.innerText = text;
-
-        //console.log(text);
-
-        var cells = text.split('\n').map(function (el) {
-            return el.split(/\s+/);
-        });
-
-        var headings = cells.shift();
-        
-        var obj = cells.map(function (el) {
-            var obj = {};
-            for (var i = 0, l = el.length; i < l; i++) {
-              obj[headings[i]] = isNaN(Number(el[i])) ? el[i] : +el[i];
-            }
-            return obj;
-        });
-
-        var json = JSON.stringify(obj);
-
-        //console.log(json);
-
-        var grafico = c3.generate({
-            bindto: '#custom-chart',
-            data: {
-                x: 'x',
-                columns: [
-                    ['x', obj[0].date, obj[1].date, obj[2].date, obj[3].date, obj[4].date],
-                    ['Valores', obj[0].value, obj[1].value, obj[2].value, obj[3].value, obj[4].value]
-                ]
-            },
-            axis: {
-                x: {
-                    label: 'Data',
-                    type: 'timeseries',
-                    tick: {
-                      format: '%Y-%m-%d'
-                    }
-                },
-                y: {
-                    label: 'Valor'
-                }
-            }
-        });
-
-
+        var jsonObject = GerarJSON(text);       
+        var grafico = GerarGrafico(jsonObject,'#custom-chart');
     };
     reader.readAsText(input.files[0]);
-
-
 }
+
+function GerarGrafico(jsonObject,id) { 
+
+    c3.generate({
+        bindto: id,
+        data: {
+            json: jsonObject,
+            keys: {
+                x : 'date',
+                value: [ 'date','value' ]
+            }  
+        },
+        axis: {
+            x: {
+                type: 'timeseries',
+                tick: {
+                    format: '%m/%Y'
+                }
+            }
+        }
+    });
+
+    return c3
+}
+
+function GerarJSON(text) {
+
+    var cells = ConverterStringParaArrayEmFormaDeCelulas(text);
+    var headings = ExtrairColunas(cells);
+    var jsonObject = MapearColunasParaTransformarEmUmObjeto(cells, headings);
+    return jsonObject;
+}
+
+function ExtrairColunas(cells) {
+    return cells.shift();
+}
+
+function ConverterStringParaArrayEmFormaDeCelulas(text) {
+    return text.split('\r\n').map(function (element) {
+        return element.split(/\s+/);
+    });
+}
+
+function MapearColunasParaTransformarEmUmObjeto(cells, headings) {
+    return cells.map(function (element) {
+        var jsonObject = {};
+        for (var i = 0, l = element.length; i < l; i++) {
+            jsonObject[headings[i]] = isNaN(Number(element[i])) ? element[i] : +element[i];
+        }
+        return jsonObject;
+    });
+}
+
